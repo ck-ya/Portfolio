@@ -3,6 +3,8 @@
 just my portfolio.  
 nothing fancy. just me, my work, and the shit i build.
 
+https://ckya.neocities.org
+
 ---
 
 ## ⚙️ tech stack
