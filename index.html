@@ -1,0 +1,608 @@
+<!--obviously by
+   ██████╗██╗  ██╗██╗   ██╗ █████╗ 
+  ██╔════╝██║ ██╔╝╚██╗ ██╔╝██╔══██╗
+  ██║     █████╔╝  ╚████╔╝ ███████║
+  ██║     ██╔═██╗   ╚██╔╝  ██╔══██║
+  ╚██████╗██║  ██╗   ██║   ██║  ██║
+   ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝
+
+ayyy >.< start this repo if ya using it :)-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    
+  <meta property="og:title" content="TaskFlow — Your minimalist task manager" />
+  <meta property="og:description" content="Listining to old bangers :BOOM::" />
+  <meta property="og:image" content="toshow.png" />
+
+    
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ckya - developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+            background: #0a0a0a;
+            color: #e5e5e5;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2rem, 8vw, 4rem);
+            font-weight: 400;
+            margin-bottom: 1rem;
+            opacity: 1;
+            min-height: 1.2em;
+        }
+        
+        .hero .tagline {
+            font-size: 1.1rem;
+            color: #888;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 6s forwards;
+        }
+        
+        .cursor {
+            display: inline-block;
+            background: #00ff88;
+            width: 2px;
+            height: 1.2em;
+            animation: blink 1s infinite;
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+            margin: 0 0.2em;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 60%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            80% { transform: translateY(-5px); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            border-top: 1px solid #333;
+        }
+        
+        .about h2 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #00ff88;
+        }
+        
+        .about p {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            color: #ccc;
+        }
+        
+        .tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .tool-tag {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #aaa;
+            transition: all 0.3s ease;
+        }
+        
+        .tool-tag:hover {
+            border-color: #00ff88;
+            color: #00ff88;
+            transform: translateY(-2px);
+        }
+        
+        /* Projects Section */
+        .projects {
+            padding: 80px 0;
+            border-top: 1px solid #333;
+        }
+        
+        .projects h2 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #00ff88;
+        }
+        
+        .project-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .project-card {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card:hover {
+            border-color: #00ff88;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 255, 136, 0.1);
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff88, transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .project-card:hover::before {
+            left: 100%;
+        }
+        
+        .project-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        
+        .project-card p {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tech-tag {
+            background: #1a1a1a;
+            color: #888;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .project-link {
+            color: #00ff88;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        
+        .project-link:hover {
+            color: #fff;
+        }
+        
+        /* Now Section */
+        .now {
+            padding: 80px 0;
+            border-top: 1px solid #333;
+        }
+        
+        .now h2 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #00ff88;
+        }
+        
+        .now-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .now-item {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 6px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .now-item:hover {
+            transform: scale(1.02);
+        }
+        
+        .now-item h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        
+        .now-item p {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            border-top: 1px solid #333;
+        }
+        
+        .contact h2 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #00ff88;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .social-link {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .social-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00ff88;
+            transition: width 0.3s ease;
+        }
+        
+        .social-link:hover {
+            color: #00ff88;
+        }
+        
+        .social-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+        
+        .easter-egg {
+            color: #444;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .easter-egg:hover {
+            color: #00ff88;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .social-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .now-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1><span class="cursor"></span></h1>
+            <p class="tagline">building things that matter, one commit at a time</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <h2>// about</h2>
+            <p>
+                full-stack developer who loves clean code and cleaner design. 
+                i spend my days turning coffee into software and my nights exploring 
+                new technologies. currently obsessed with performance optimization 
+                and finding the perfect balance between functionality and aesthetics.
+            </p>
+            <div class="tools">
+                <span class="tool-tag">javascript</span>
+                <span class="tool-tag">node.js</span>
+                <span class="tool-tag">python</span>
+                <span class="tool-tag">hentai</span>
+                <span class="tool-tag">flutter</span>
+                <span class="tool-tag">idkwhatnow</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects">
+        <div class="container">
+            <h2>// projects</h2>
+            <p>things i've built when i probably should have been sleeping</p>
+            
+            <div class="project-grid">
+
+                <div class="project-card">
+                    <h3>haifu tv</h3>
+                    <p>umm...yet to release a taihen streaming app with huge library (you won't get bored).</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">scrapping shit</span>
+                        <span class="tech-tag">firebase</span>
+                        <span class="tech-tag">render</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">n/a rn</a>
+                        <a href="#" class="project-link">n/a rn</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>this mf portfolio</h3>
+                    <p>yea use this for free edit or do wahtever.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">html</span>
+                        <span class="tech-tag">css</span>
+                        <span class="tech-tag">just check the code</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link" onclick="location.reload(); return false;">live demo</a>
+
+                        <a href="#" class="project-link">source</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>memory</h3>
+                    <p>a social app for people who hate social apps.
+no noise. no followers. just vibes, thoughts, and real ones.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">firebase</span>
+                        <span class="tech-tag">my raspberry π</span>
+                        <span class="tech-tag">progressing</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">n/a rn</a>
+                        <a href="#" class="project-link">n/a rn</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>taskflow</h3>
+                    <p>a minimalist task management app that actually helps you focus instead of overwhelming you with features nobody asked for</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">cool html</span>
+                        <span class="tech-tag">firebase</span>
+                        <span class="tech-tag">check the code bruh</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">live demo</a>
+                        <a href="#" class="project-link">source</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Now Section -->
+    <section class="now">
+        <div class="container">
+            <h2>// now</h2>
+            <p>what’s been eating my brain</p>
+            
+            <div class="now-grid">
+                <div class="now-item">
+                    <h3>learning</h3>
+                    <p>diving deep into rust and systems programming. it's like c++ but with feelings</p>
+                </div>
+                
+                <div class="now-item">
+                    <h3>reading</h3>
+                    <p>"ncert" <- just my high school shit books 📚 that i need to read to grduate.</p>
+                </div>
+                
+                <div class="now-item">
+                    <h3>watching</h3>
+                    <p>redo-of-healer 💀, never mind just my school lectures.</p>
+                </div>
+                
+                <div class="now-item">
+                    <h3>listening</h3>
+                    <p>lofi hip hop, eastern pop, western classiacl and idk 🎵 i'll share my playlist</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="container">
+            <h2>// contact</h2>
+            <p>let's build something cool together</p>
+            
+            <div class="social-links">
+                <a href="https://github.com/CK-YA/" class="social-link">github</a>
+                <a href="https://x.com/_ckya_" class="social-link">X</a>
+                <a href="https://instagram/ck_ya" class="">instagram</a>
+                <a href="mailto:canonots@proton.me" class="social-link">email</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p style="color: #666; font-size: 0.9rem;">
+                built with ❤️ and way too much caffeine
+            </p>
+            <p class="easter-egg" onclick="this.innerHTML='you found me! 🎉 dm me the word &quot;konami&quot; for a surprise'">
+                © 2025 ckya.dev
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Add some interactive behavior
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Add typing animation to hero
+            const heroText = document.querySelector('.hero h1');
+            const messages = [
+                "hey, i'm ckya",
+                "Yo, wsup 😎",
+                "one piece is real 🏴‍☠️⚔️",
+                "i'm not poor, i'm just broke 💸😭"
+            ];
+            
+            let currentMessageIndex = 0;
+            let currentCharIndex = 0;
+            let isDeleting = false;
+            let isPaused = false;
+            
+            function typeAnimation() {
+                const currentMessage = messages[currentMessageIndex];
+                
+                if (isPaused) {
+                    setTimeout(() => {
+                        isPaused = false;
+                        typeAnimation();
+                    }, 2000); // Pause for 2 seconds
+                    return;
+                }
+                
+                if (isDeleting) {
+                    heroText.innerHTML = currentMessage.substring(0, currentCharIndex - 1) + '<span class="cursor"></span>';
+                    currentCharIndex--;
+                    
+                    if (currentCharIndex === 0) {
+                        isDeleting = false;
+                        currentMessageIndex = (currentMessageIndex + 1) % messages.length;
+                        setTimeout(typeAnimation, 500); // Short pause before typing next message
+                        return;
+                    }
+                } else {
+                    heroText.innerHTML = currentMessage.substring(0, currentCharIndex + 1) + '<span class="cursor"></span>';
+                    currentCharIndex++;
+                    
+                    if (currentCharIndex === currentMessage.length) {
+                        isPaused = true;
+                        setTimeout(() => {
+                            isDeleting = true;
+                            typeAnimation();
+                        }, 2000);
+                        return;
+                    }
+                }
+                
+                const speed = isDeleting ? 50 : 100;
+                setTimeout(typeAnimation, speed);
+            }
+            
+            // Start typing animation after a brief delay
+            setTimeout(typeAnimation, 1000);
+
+            // Add scroll reveal for sections
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            document.querySelectorAll('section:not(.hero)').forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'all 0.6s ease';
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
