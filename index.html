@@ -6,7 +6,7 @@
   ╚██████╗██║  ██╗   ██║   ██║  ██║
    ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝
 
-ayyy >.< star this repo if ya using it :)-->
+ayyy >.< star this repo if ya using it :), but u will not ik-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +44,7 @@ ayyy >.< star this repo if ya using it :)-->
             padding: 0 20px;
         }
         
-        /* Hero Section */
+      
         .hero {
             min-height: 100vh;
             display: flex;
@@ -107,7 +107,7 @@ ayyy >.< star this repo if ya using it :)-->
             51%, 100% { opacity: 0; }
         }
         
-        /* About Section */
+        
         .about {
             padding: 80px 0;
             border-top: 1px solid #333;
@@ -148,7 +148,7 @@ ayyy >.< star this repo if ya using it :)-->
             transform: translateY(-2px);
         }
         
-        /* Projects Section */
+        
         .projects {
             padding: 80px 0;
             border-top: 1px solid #333;
@@ -240,8 +240,7 @@ ayyy >.< star this repo if ya using it :)-->
         .project-link:hover {
             color: #fff;
         }
-        
-        /* Now Section */
+       
         .now {
             padding: 80px 0;
             border-top: 1px solid #333;
@@ -283,7 +282,6 @@ ayyy >.< star this repo if ya using it :)-->
             font-size: 0.9rem;
         }
         
-        /* Contact Section */
         .contact {
             padding: 80px 0;
             border-top: 1px solid #333;
@@ -347,7 +345,6 @@ ayyy >.< star this repo if ya using it :)-->
             color: #00ff88;
         }
         
-        /* Responsive */
         @media (max-width: 768px) {
             .social-links {
                 flex-direction: column;
@@ -361,7 +358,7 @@ ayyy >.< star this repo if ya using it :)-->
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
+    <!--hero-->
     <section class="hero">
         <div class="container">
             <h1><span class="cursor"></span></h1>
@@ -369,7 +366,7 @@ ayyy >.< star this repo if ya using it :)-->
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- about -->
     <section class="about">
         <div class="container">
             <h2>// about</h2>
@@ -390,7 +387,7 @@ ayyy >.< star this repo if ya using it :)-->
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- projects -->
     <section class="projects">
         <div class="container">
             <h2>// projects</h2>
@@ -460,7 +457,7 @@ no noise. no followers. just vibes, thoughts, and real ones.</p>
         </div>
     </section>
 
-    <!-- Now Section -->
+    <!-- now -->
     <section class="now">
         <div class="container">
             <h2>// now</h2>
@@ -490,7 +487,7 @@ no noise. no followers. just vibes, thoughts, and real ones.</p>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- contact -->
     <section class="contact">
         <div class="container">
             <h2>// contact</h2>
@@ -530,8 +527,8 @@ no noise. no followers. just vibes, thoughts, and real ones.</p>
                 });
             });
 
-            // Add typing animation to hero section
-           // You can add more lines like : "hero section empty like your brain"
+            // typing animation to hero section
+           // u can add more lines like : "hero section empty like your brain"
             const heroText = document.querySelector('.hero h1');
             const messages = [
                 "hey, i'm ckya",
@@ -552,7 +549,7 @@ no noise. no followers. just vibes, thoughts, and real ones.</p>
                     setTimeout(() => {
                         isPaused = false;
                         typeAnimation();
-                    }, 2000); // Pause for 2 seconds
+                    }, 2000); 
                     return;
                 }
                 
@@ -563,7 +560,7 @@ no noise. no followers. just vibes, thoughts, and real ones.</p>
                     if (currentCharIndex === 0) {
                         isDeleting = false;
                         currentMessageIndex = (currentMessageIndex + 1) % messages.length;
-                        setTimeout(typeAnimation, 500); // Short pause before typing next message
+                        setTimeout(typeAnimation, 500); 
                         return;
                     }
                 } else {
@@ -584,10 +581,10 @@ no noise. no followers. just vibes, thoughts, and real ones.</p>
                 setTimeout(typeAnimation, speed);
             }
             
-            // Start typing animation after a brief delay
+        
             setTimeout(typeAnimation, 1000);
 
-            // Add scroll reveal for sections
+            // scroll reveal for sections
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
